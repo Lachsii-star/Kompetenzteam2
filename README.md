@@ -1,5 +1,4 @@
-# Kompetenzteam2
-
+KompetenzTeam
 <!doctype html>
 <html lang="de">
 <head>
@@ -13,8 +12,6 @@
 
       /* Dark theme variables */
       --bg: #0b1220;
-      --card: #101a2b;
-      --card2: #0f172a;
       --text: #e5e7eb;
       --muted: #9ca3af;
       --border: rgba(255,255,255,.12);
@@ -24,8 +21,6 @@
       --inputBg2: rgba(255,255,255,.08);
       --focus: rgba(59,130,246,.35);
       --danger: #ef4444;
-      --warn: #f59e0b;
-      --warnBg: rgba(245,158,11,.10);
       --warnBorder: rgba(245,158,11,.55);
     }
 
@@ -38,12 +33,7 @@
       color: var(--text);
     }
 
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      gap:16px;
-    }
+    .wrap{ max-width:1200px; margin:0 auto; display:grid; gap:16px; }
 
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
@@ -89,22 +79,15 @@
     }
 
     textarea{ min-height:80px; resize:vertical; }
-
     .requiredHint{ font-size:12px; color: var(--muted); }
 
-    /* Pflichtfeld-Markierung */
     .fieldError input, .fieldError textarea, .fieldError select{
       border-color: var(--danger) !important;
       box-shadow: 0 0 0 3px rgba(239,68,68,.22);
     }
-    .errorText{
-      font-size:12px;
-      color: var(--danger);
-      display:none;
-    }
+    .errorText{ font-size:12px; color: var(--danger); display:none; }
     .fieldError .errorText{ display:block; }
 
-    /* Optional-Feld-Markierung (gelb/orange) */
     .optionalHint{
       font-size:12px;
       color: #fbbf24;
@@ -140,6 +123,7 @@
     }
     button.success:disabled{ opacity:.55; cursor:not-allowed; }
 
+    #copyStatus{ font-size:13px; color:#22c55e; font-weight:800; display:none; }
     .muted{ color: var(--muted); font-size:13px; }
 
     .out{
@@ -177,12 +161,8 @@
       white-space: nowrap;
     }
 
-    #copyStatus{ font-size:13px; color:#22c55e; font-weight:800; display:none; }
-
-    @media (max-width: 900px){ .layout{ grid-template-columns:1fr; } }
     @media (max-width: 760px){ .grid{ grid-template-columns:1fr; } }
 
-    /* Richtung-Wahl */
     .dirRow{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .dirPill{
       display:flex; align-items:center; gap:8px;
@@ -194,19 +174,6 @@
     }
     .dirPill:hover{ background: rgba(255,255,255,.08); }
     .dirPill input{ margin:0; accent-color:#60a5fa; }
-
-    /* Bußgeldkatalog (rechts) */
-    .layout{ display:grid; grid-template-columns: 2fr 1fr; gap:16px; margin-top:12px; }
-    table{ width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; }
-    th, td{ padding:10px 12px; border-bottom: 1px solid rgba(255,255,255,.10); font-size:13px; }
-    th{ text-align:left; background: rgba(255,255,255,.06); }
-    tr:last-child td{ border-bottom:none; }
-
-    .pill{ display:inline-block; padding:2px 10px; border-radius:999px; font-weight:800; font-size:12px; }
-    .g{ background: rgba(34,197,94,.18); color:#86efac; border:1px solid rgba(34,197,94,.25); }
-    .y{ background: rgba(245,158,11,.18); color:#fde68a; border:1px solid rgba(245,158,11,.25); }
-    .o{ background: rgba(251,146,60,.18); color:#fed7aa; border:1px solid rgba(251,146,60,.25); }
-    .r{ background: rgba(239,68,68,.18); color:#fecaca; border:1px solid rgba(239,68,68,.25); }
 
     .fineBox{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap;
@@ -234,122 +201,92 @@
         Dark Mode aktiv. Datum/Uhrzeit laufen live. Bußgeld wird automatisch anhand der Überschreitung berechnet.
       </p>
 
-      <div class="layout">
-        <!-- LINKS: Eingaben -->
-        <div>
-          <div class="grid">
-            <label>
-              Datum (auto – live)
-              <input id="date" type="text" readonly />
-              <span class="requiredHint">&nbsp;</span>
-            </label>
+      <div class="grid" style="margin-top:12px;">
+        <label>
+          Datum (auto – live)
+          <input id="date" type="text" readonly />
+          <span class="requiredHint">&nbsp;</span>
+        </label>
 
-            <label>
-              Uhrzeit (auto – live)
-              <input id="time" type="text" readonly />
-              <span class="requiredHint">&nbsp;</span>
-            </label>
+        <label>
+          Uhrzeit (auto – live)
+          <input id="time" type="text" readonly />
+          <span class="requiredHint">&nbsp;</span>
+        </label>
 
-            <label>
-              Ort / Einsatzgebiet
-              <input id="locationBase" type="text" value="Jägerjob Strasse, 1077 PLZ" />
-              <span class="requiredHint">Fahrtrichtung wird automatisch angehängt.</span>
-            </label>
+        <label>
+          Ort / Einsatzgebiet
+          <input id="locationBase" type="text" value="Jägerjob Strasse, 1077 PLZ" />
+          <span class="requiredHint">Fahrtrichtung wird automatisch angehängt.</span>
+        </label>
 
-            <label class="optionalField">
-              Fahrtrichtung <span class="optionalHint">Optional</span>
-              <div class="dirRow">
-                <label class="dirPill"><input type="radio" name="direction" id="dirNorth" value="Norden"> Norden</label>
-                <label class="dirPill"><input type="radio" name="direction" id="dirSouth" value="Süden"> Süden</label>
-              </div>
-              <span class="requiredHint">Wenn keine Auswahl, wird keine Fahrtrichtung angezeigt.</span>
-            </label>
+        <label class="optionalField">
+          Fahrtrichtung <span class="optionalHint">Optional</span>
+          <div class="dirRow">
+            <label class="dirPill"><input type="radio" name="direction" id="dirNorth" value="Norden"> Norden</label>
+            <label class="dirPill"><input type="radio" name="direction" id="dirSouth" value="Süden"> Süden</label>
+          </div>
+          <span class="requiredHint">Wenn keine Auswahl, wird keine Fahrtrichtung angezeigt.</span>
+        </label>
 
-            <label id="wrapLimit">
-              Zulässige Höchstgeschwindigkeit (km/h) <span class="requiredHint">(Pflicht)</span>
-              <input id="limit" type="number" min="0" step="1" value="130" />
-              <span class="errorText">Pflichtfeld fehlt oder ist ungültig.</span>
-            </label>
+        <label id="wrapLimit">
+          Zulässige Höchstgeschwindigkeit (km/h) <span class="requiredHint">(Pflicht)</span>
+          <input id="limit" type="number" min="0" step="1" value="130" />
+          <span class="errorText">Pflichtfeld fehlt oder ist ungültig.</span>
+        </label>
 
-            <label id="wrapMeasured">
-              Gemessene Geschwindigkeit (km/h) <span class="requiredHint">(Pflicht)</span>
-              <input id="measured" type="number" min="0" step="1" placeholder="z.B. 170" />
-              <span class="errorText">Bitte eine gemessene Geschwindigkeit eintragen.</span>
-            </label>
+        <label id="wrapMeasured">
+          Gemessene Geschwindigkeit (km/h) <span class="requiredHint">(Pflicht)</span>
+          <input id="measured" type="number" min="0" step="1" placeholder="z.B. 170" />
+          <span class="errorText">Bitte eine gemessene Geschwindigkeit eintragen.</span>
+        </label>
 
-            <label id="wrapTolerance">
-              Toleranzabzug (km/h) <span class="requiredHint">(Pflicht)</span>
-              <input id="tolerance" type="number" min="0" step="1" value="10" />
-              <span class="errorText">Pflichtfeld fehlt oder ist ungültig.</span>
-            </label>
+        <label id="wrapTolerance">
+          Toleranzabzug (km/h) <span class="requiredHint">(Pflicht)</span>
+          <input id="tolerance" type="number" min="0" step="1" value="10" />
+          <span class="errorText">Pflichtfeld fehlt oder ist ungültig.</span>
+        </label>
 
-            <label class="optionalField">
-              Kennzeichen <span class="optionalHint">Optional</span>
-              <input id="plate" type="text" placeholder="z.B. NC-12345" />
-              <span class="requiredHint">Wenn leer, wird „FAHRZEUGDATEN“ ausgelassen.</span>
-            </label>
+        <label class="optionalField">
+          Kennzeichen <span class="optionalHint">Optional</span>
+          <input id="plate" type="text" placeholder="z.B. NC-12345" />
+          <span class="requiredHint">Wenn leer, wird „FAHRZEUGDATEN“ ausgelassen.</span>
+        </label>
 
-            <!-- Dropdown: Officer -->
-            <label class="optionalField">
-              Gezeichnet von <span class="optionalHint">Optional</span>
-              <select id="officer">
-                <option selected>Andrew Petzenstein | SD-126 | Coporal</option>
-                <option>Diddy Messerschmidt | SD-154 | Senior Deputy</option>
-                <option>Earl Thomas | SD-82 | Coporal</option>
-              </select>
-              <span class="requiredHint">&nbsp;</span>
-            </label>
+        <label class="optionalField">
+          Gezeichnet von <span class="optionalHint">Optional</span>
+          <select id="officer">
+            <option selected>Andrew Petzenstein | SD-126 | Coporal</option>
+            <option>Diddy Messerschmidt | SD-154 | Senior Deputy</option>
+            <option>Earl Thomas | SD-82 | Coporal</option>
+          </select>
+          <span class="requiredHint">&nbsp;</span>
+        </label>
 
-            <label style="grid-column: 1 / -1;">
-              Messverfahren (Text wie im Bescheid)
-              <textarea id="method">Die Geschwindigkeitsmessung erfolgte mobil aus einem gekennzeichneten Streifenfahrzeug des Narco County Sheriff Departments mittels fest verbautem Radarmesssystem (Wraith ARS 2 / wk_wars2x Radar-System).
+        <label style="grid-column: 1 / -1;">
+          Messverfahren (Text wie im Bescheid)
+          <textarea id="method">Die Geschwindigkeitsmessung erfolgte mobil aus einem gekennzeichneten Streifenfahrzeug des Narco County Sheriff Departments mittels fest verbautem Radarmesssystem (Wraith ARS 2 / wk_wars2x Radar-System).
 Die Messung erfolgte stationär aus dem Streifenfahrzeug heraus ohne Verfolgungsfahrt.
 Es bestand freie und uneingeschränkte Sicht auf das gemessene Fahrzeug.
 Zwischenverkehr oder andere Störquellen waren nicht vorhanden.
 Das Fahrzeug wurde visuell eindeutig identifiziert.</textarea>
-              <span class="requiredHint">&nbsp;</span>
-            </label>
-          </div>
+          <span class="requiredHint">&nbsp;</span>
+        </label>
+      </div>
 
-          <div class="row" style="margin-top:12px;">
-            <button id="btnGenerate">Bescheid erstellen / aktualisieren</button>
-            <button class="success" id="btnCopy" disabled>Bescheid kopieren</button>
-            <span id="copyStatus">✅ Kopiert!</span>
-            <span class="muted" id="calcHint"></span>
-          </div>
-        </div>
+      <div class="fineBox">
+        <div><strong>Auto-Bußgeld:</strong></div>
+        <div class="muted">Überschreitung:</div>
+        <div><strong id="overDisplay">–</strong></div>
+        <div class="muted">→ Betrag:</div>
+        <div><strong id="fineDisplay">–</strong></div>
+      </div>
 
-        <!-- RECHTS: Bußgeldkatalog -->
-        <div class="card" style="box-shadow:none;">
-          <h2>Bußgeldkatalog (Info)</h2>
-          <table aria-label="Bußgeldtabelle">
-            <thead>
-              <tr>
-                <th>Stufe</th>
-                <th>Überschreitung</th>
-                <th>Bußgeld</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td><span class="pill g">🟢</span></td><td>1–10 km/h</td><td>5.000 $</td></tr>
-              <tr><td><span class="pill y">🟡</span></td><td>11–20 km/h</td><td>8.000 $</td></tr>
-              <tr><td><span class="pill o">🟠</span></td><td>21–30 km/h</td><td>12.000 $</td></tr>
-              <tr><td><span class="pill r">🔴</span></td><td>31+ km/h</td><td>15.000 $</td></tr>
-            </tbody>
-          </table>
-
-          <div class="fineBox">
-            <div><strong>Auto-Bußgeld:</strong></div>
-            <div class="muted">Überschreitung:</div>
-            <div><strong id="overDisplay">–</strong></div>
-            <div class="muted">→ Betrag:</div>
-            <div><strong id="fineDisplay">–</strong></div>
-          </div>
-
-          <div class="muted" style="margin-top:8px;">
-            Hinweis: Bei 0 km/h Überschreitung wird 0 $ gesetzt.
-          </div>
-        </div>
+      <div class="row" style="margin-top:12px;">
+        <button id="btnGenerate">Bescheid erstellen / aktualisieren</button>
+        <button class="success" id="btnCopy" disabled>Bescheid kopieren</button>
+        <span id="copyStatus">✅ Kopiert!</span>
+        <span class="muted" id="calcHint"></span>
       </div>
     </div>
 
@@ -424,11 +361,10 @@ Das Fahrzeug wurde visuell eindeutig identifiziert.</textarea>
     // Bußgeldlogik (41+ entfernt, 31+ = 15.000)
     function calcFineByOver(overKmH){
       if (!Number.isFinite(overKmH) || overKmH <= 0) return 0;
-      if (overKmH >= 1 && overKmH <= 10) return 5000;
-      if (overKmH >= 11 && overKmH <= 20) return 8000;
-      if (overKmH >= 21 && overKmH <= 30) return 12000;
-      if (overKmH >= 31) return 15000;
-      return 0;
+      if (overKmH <= 10) return 5000;
+      if (overKmH <= 20) return 8000;
+      if (overKmH <= 30) return 12000;
+      return 15000; // 31+
     }
 
     function generate() {

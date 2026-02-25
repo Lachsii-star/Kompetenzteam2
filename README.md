@@ -422,7 +422,6 @@ Das Fahrzeug wurde visuell eindeutig identifiziert.</textarea>
       if (plate.length > 0) {
         vehicleBlock =
 `〚 FAHRZEUGDATEN 〛
-
 Kennzeichen: ${plate}
 
 `;
@@ -434,7 +433,6 @@ Kennzeichen: ${plate}
 `⭐ NARCO COUNTY SHERIFF DEPARTMENT ⭐
 
 〚 DATEN ZUM VERSTOSS 〛
-
 Datum: ${date}
 
 Uhrzeit: ${time}
